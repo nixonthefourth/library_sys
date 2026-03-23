@@ -20,4 +20,8 @@ add_executable(library_sys src/main.cpp
         include/Resources/Conference.h
         src/Logic/Loan.cpp
         include/Logic/Loan.h
+        src/Logic/ResourceList.cpp
+        include/Logic/ResourceList.h
+        src/Logic/UserList.cpp
+        include/Logic/UserList.h
 )
