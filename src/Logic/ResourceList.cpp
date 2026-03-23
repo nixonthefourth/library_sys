@@ -9,73 +9,132 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 void ResourceList::loadFromFile(const std::string& filename) {
     std::ifstream file(filename);
 
-    // Opening check
     if (!file.is_open()) {
         std::cout << "Failed to open file\n";
         return;
     }
 
-    std::string line;
-    int section = 0;
-    int idCounter = 1;
+    // Read every line into a vector first, stripping \r so Windows line-endings
+    // don't silently corrupt string comparisons or ID generation.
+    std::vector<std::string> lines;
+    std::string raw;
+    while (std::getline(file, raw)) {
+        if (!raw.empty() && raw.back() == '\r')
+            raw.pop_back();
+        lines.push_back(raw);
+    }
 
-    while (std::getline(file, line)) {
+    int section    = -1;
+    int bookID     = 1;
+    int journalID  = 1;
+    int confID     = 1;
 
-        // Section switch
-        if (line == "#####") {
+    // We walk through the lines with an explicit index so we can advance
+    // by multiple lines at once without any seekg trickery.
+    for (size_t i = 0; i < lines.size(); ++i) {
+        const std::string& line = lines[i];
+
+        // ---------- section separator ----------
+        if (line.find("#####") != std::string::npos) {
             section++;
             continue;
         }
 
-        if (line.empty()) continue;
+        // ---------- skip comments and blank lines ----------
+        if (line.empty() || line[0] == '#') continue;
 
-        // Books
+        // ============================================================
+        // SECTION 1 — BOOKS
+        // Format (3 lines per book):
+        //   Author Surname, First name
+        //   Title
+        //   Year
+        // ============================================================
         if (section == 1) {
-            std::string author = line;
+            // line   = author  (already in `line`)
+            // line+1 = title
+            // line+2 = year
+            if (i + 2 >= lines.size()) break; // malformed file guard
 
-            std::string title;
-            std::getline(file, title);
+            const std::string& title = lines[i + 1];
+            // lines[i + 2] is the year — we store it for future use if needed
+            i += 2; // consume title and year lines
 
-            std::string year;
-            std::getline(file, year);
-
-            std::string id = "B" + std::to_string(idCounter++);
-
+            std::string id = "B" + std::to_string(bookID++);
             resources.push_back(new Book(id, false, title));
         }
 
-        // Journals
+        // ============================================================
+        // SECTION 2 — JOURNALS
+        // Format (3 lines per journal):
+        //   Journal title
+        //   Volume line 1  (e.g. "1:1 2 3 4")
+        //   Volume line 2  (e.g. "2:1 2 3 4")
+        // ============================================================
         else if (section == 2) {
-            std::string title = line;
+            const std::string& title = line;
 
-            std::string issues;
-            std::getline(file, issues);
+            if (i + 2 >= lines.size()) break; // malformed file guard
+            i += 2; // skip the two volume lines
 
-            std::string id = "J" + std::to_string(idCounter++);
-
+            std::string id = "J" + std::to_string(journalID++);
             resources.push_back(new Journal(id, false, title));
         }
 
-        // Conferences
+        // ============================================================
+        // SECTION 3 — CONFERENCES
+        // Format (variable lines per conference):
+        //   Conference full title          <- contains spaces
+        //   ACRONYM2025                    <- no spaces
+        //   ACRONYM2024                    <- no spaces
+        //   ...
+        // A new conference begins whenever we encounter a line with spaces.
+        // We detect it with a simple helper: if a line contains a space it is
+        // a title; if it has no spaces it is an acronym.
+        // ============================================================
         else if (section == 3) {
-            std::string title = line;
+            // `line` is the conference title (it contains spaces)
+            const std::string& title = line;
 
-            std::string acronym;
-            while (std::getline(file, acronym)) {
-                if (acronym.empty() || acronym == "#####") break;
+            // Gather all following acronym lines that belong to this title.
+            // Stop when we hit: another title (has a space), a section marker,
+            // a comment, or EOF.
+            while (i + 1 < lines.size()) {
+                const std::string& next = lines[i + 1];
 
-                std::string id = "C" + std::to_string(idCounter++);
+                // End of section
+                if (next.find("#####") != std::string::npos) {
+                    section++;
+                    i++; // consume the ##### line so the outer loop doesn't re-process it
+                    break;
+                }
 
-                resources.push_back(new Conference(id, false, title, acronym));
+                // Blank or comment — skip silently
+                if (next.empty() || next[0] == '#') {
+                    i++;
+                    continue;
+                }
+
+                // If the next line contains a space it is the start of a new
+                // conference title — leave it for the outer loop to handle.
+                if (next.find(' ') != std::string::npos) {
+                    break;
+                }
+
+                // Otherwise it is an acronym for the current conference.
+                i++;
+                std::string id = "C" + std::to_string(confID++);
+                resources.push_back(new Conference(id, false, title, next));
             }
         }
     }
 
-    file.close();
+    std::cout << "Loaded resources: " << resources.size() << "\n";
 }
 
 // Utility Functions

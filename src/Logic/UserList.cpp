@@ -24,6 +24,10 @@ void UserList::loadFromFile(const std::string& filename) {
 
     while (std::getline(file, line)) {
 
+        // Strip Windows-style carriage return if present
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+
         if (line.empty()) continue;
 
         // First char = type
@@ -50,6 +54,7 @@ void UserList::loadFromFile(const std::string& filename) {
         }
     }
 
+    std::cout << "Loaded users: " << users.size() << "\n";
     file.close();
 }
 

@@ -24,4 +24,6 @@ add_executable(library_sys src/main.cpp
         include/Logic/ResourceList.h
         src/Logic/UserList.cpp
         include/Logic/UserList.h
+        src/Logic/LibrarySystem.cpp
+        include/Logic/LibrarySystem.h
 )
