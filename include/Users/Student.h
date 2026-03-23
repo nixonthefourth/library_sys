@@ -4,17 +4,28 @@
 
 #ifndef LIBRARY_SYS_STUDENT_H
 #define LIBRARY_SYS_STUDENT_H
-#include <string>
+
 #include "Users/Person.h"
+#include <string>
 
 /**
- * @brief Inherits from parental class Person. Sets student's resource borrow limit as 1.
+ * @brief A student user — may hold up to 1 resource at a time.
+ *
+ * The borrow limit of 1 is enforced by passing it to Person's constructor;
+ * no additional logic is needed here.
+ * Type code in A2UserList.txt: '1'.
  */
 class Student : public Person {
 public:
-    Student(int ID,
-        const std::string &name)
-        : Person(1, ID, name, 0) {} // Students can borrow up to 1 resource
+
+    /**
+     * @brief Constructs a Student.
+     *
+     * @param ID    Unique integer ID assigned sequentially by UserList.
+     * @param name  Display name read from the user file.
+     */
+    Student(int ID, const std::string& name)
+        : Person(1, ID, name, 0) {}
 };
 
 #endif //LIBRARY_SYS_STUDENT_H

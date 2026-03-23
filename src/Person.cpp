@@ -4,47 +4,60 @@
 
 #include "../include/Users/Person.h"
 
+// ────────────────────────────────────────────────────────────────────────────
+// Accessors
+// ────────────────────────────────────────────────────────────────────────────
+
 /**
- *
- * @return Returns the borrow limit of the user
+ * @return The maximum number of resources this user is permitted to hold
+ *         at any one time.  Set by the subclass constructor.
  */
 int Person::getBorrowLimit() const {
     return borrowLimit;
 }
 
 /**
- *
- * @return Returns user's ID
+ * @return The user's unique integer ID, assigned sequentially by UserList
+ *         at load time.
  */
 int Person::getID() const {
     return ID;
 }
 
 /**
- *
- * @return Returns username
+ * @return The user's display name as read from the user file.
  */
 std::string Person::getName() const {
     return name;
 }
 
 /**
- *
- * @return Returns the number of currently borrowed resources
+ * @return The number of resources this user currently has on loan.
+ *         Should never exceed borrowLimit under normal operation.
  */
 int Person::getCurrentlyBorrowing() const {
     return currentlyBorrowing;
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// Borrow count management
+// ────────────────────────────────────────────────────────────────────────────
+
 /**
- * Increments the number of borrowed elements
+ * @brief Increments the borrowed resource count by one.
+ *
+ * Called by Loan::issueLoan() after all validation checks pass.
+ * Not intended for direct use outside the loan management flow.
  */
 void Person::incrementBorrowing() {
     currentlyBorrowing++;
 }
 
 /**
- * Decrements the number of borrowed elements
+ * @brief Decrements the borrowed resource count by one.
+ *
+ * Called by Loan::returnLoan() when a resource is handed back.
+ * Not intended for direct use outside the loan management flow.
  */
 void Person::decrementBorrowing() {
     currentlyBorrowing--;

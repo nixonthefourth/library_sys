@@ -5,16 +5,27 @@
 #ifndef LIBRARY_SYS_STAFF_H
 #define LIBRARY_SYS_STAFF_H
 
-#include <string>
 #include "Users/Person.h"
+#include <string>
 
 /**
- * @brief Inherits from parental class Person. Sets staff member's resource borrow limit as 2.
+ * @brief A university staff member — may hold up to 2 resources at a time.
+ *
+ * The higher borrow limit reflects staff privileges and is enforced by
+ * passing 2 to Person's constructor.
+ * Type code in A2UserList.txt: '2'.
  */
 class Staff : public Person {
 public:
-    Staff(int ID,
-        std::string name) : Person(2, ID, name, 0){}
+
+    /**
+     * @brief Constructs a Staff member.
+     *
+     * @param ID    Unique integer ID assigned sequentially by UserList.
+     * @param name  Display name read from the user file.
+     */
+    Staff(int ID, const std::string& name)
+        : Person(2, ID, name, 0) {}
 };
 
 #endif //LIBRARY_SYS_STAFF_H
