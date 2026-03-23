@@ -16,4 +16,5 @@ add_executable(library_sys src/main.cpp
         include/Resource.h
         include/Book.h
         include/Journal.h
-        include/Conference.h)
+        include/Conference.h
+)

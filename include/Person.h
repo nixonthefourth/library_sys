@@ -16,17 +16,17 @@ protected: // Private Variables
     int borrowLimit;
     int ID;
     std::string name;
+    int currentlyBorrowing;
 
 public: // Public Accessors
     // Constructor
     Person(int borrowLimit, // Passed by value, since it's cheaper to copy than reference
            int ID, // Passed by value, since it's cheaper to copy than reference
-           const std::string &name // Passed by reference, since referencing long strings is cheaper than copying
-           ) : borrowLimit(borrowLimit), ID(ID), name(name) {};
+           const std::string &name, // Passed by reference, since referencing long strings is cheaper than copying
+           int currentlyBorrowing // Passed by value, since it's cheaper to copy than reference
+           ) : borrowLimit(borrowLimit), ID(ID), name(name), currentlyBorrowing(currentlyBorrowing) {};
 
     // Getters
-
-    // Setters are disabled since, those are set initially in an inherited constructor and later on after file parsing
     virtual int getBorrowLimit() const;
     virtual int getID() const;
     virtual std::string getName() const;
