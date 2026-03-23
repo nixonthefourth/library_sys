@@ -5,8 +5,8 @@
 #ifndef LIBRARY_SYS_LOAN_H
 #define LIBRARY_SYS_LOAN_H
 
-#include "Person.h"
-#include "Resource.h"
+#include "../Users/Person.h"
+#include "../Resources/Resource.h"
 
 class Loan {
 private:

@@ -2,7 +2,7 @@
 // Created by Mykyta Khomiakov on 23/03/2026.
 //
 
-#include "../include/Loan.h"
+#include "../../include/Logic/Loan.h"
 
 // Constructor
 Loan::Loan(Person* borrower, Resource* resource)

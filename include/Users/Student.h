@@ -5,7 +5,7 @@
 #ifndef LIBRARY_SYS_STUDENT_H
 #define LIBRARY_SYS_STUDENT_H
 #include <string>
-#include "Person.h"
+#include "../Person.h"
 
 /**
  * @brief Inherits from parental class Person. Sets student's resource borrow limit as 1.

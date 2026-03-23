@@ -6,7 +6,7 @@
 #define LIBRARY_SYS_STAFF_H
 
 #include <string>
-#include "Person.h"
+#include "../Person.h"
 
 /**
  * @brief Inherits from parental class Person. Sets staff member's resource borrow limit as 2.

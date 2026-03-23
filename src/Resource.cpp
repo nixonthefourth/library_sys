@@ -2,7 +2,7 @@
 // Created by Mykyta Khomiakov on 23/03/2026.
 //
 
-#include "Resource.h"
+#include "../include/Resources/Resource.h"
 #include <string>
 
 /**

@@ -8,15 +8,15 @@ include_directories(src)
 
 add_executable(library_sys src/main.cpp
         src/Person.cpp
-        include/Person.h
-        include/Student.h
-        include/Staff.h
-        include/LibStaff.h
+        include/Users/Person.h
+        include/Users/Student.h
+        include/Users/Staff.h
+        include/Users/LibStaff.h
         src/Resource.cpp
-        include/Resource.h
-        include/Book.h
-        include/Journal.h
-        include/Conference.h
-        src/Loan.cpp
-        include/Loan.h
+        include/Resources/Resource.h
+        include/Resources/Book.h
+        include/Resources/Journal.h
+        include/Resources/Conference.h
+        src/Logic/Loan.cpp
+        include/Logic/Loan.h
 )
