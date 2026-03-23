@@ -65,13 +65,13 @@ void Display::rule(const char* colour) {
 void Display::banner() {
     clearScreen();
     std::cout << "\n";
-    rule(CYAN);
-    std::cout << BOLD << CYAN;
+    rule(GREEN);
+    std::cout << BOLD << GREEN;
     typewriteLine("  UNIVERSITY LIBRARY MANAGEMENT SYSTEM", 22);
     std::cout << RESET << DIM;
     typewriteLine("  Resource & Loan Tracking  //  v1.0", 12);
     std::cout << RESET;
-    rule(CYAN);
+    rule(GREEN);
     std::cout << "\n";
 }
 
@@ -92,11 +92,11 @@ void Display::menu() {
     rule();
 
     // Each option: coloured key  plain label
-    std::cout << "  " << BOLD << CYAN  << "1" << RESET << WHITE << "  Borrow a resource\n"   << RESET;
-    std::cout << "  " << BOLD << CYAN  << "2" << RESET << WHITE << "  Return a resource\n"   << RESET;
-    std::cout << "  " << BOLD << CYAN  << "3" << RESET << WHITE << "  List available\n"       << RESET;
-    std::cout << "  " << BOLD << CYAN  << "4" << RESET << WHITE << "  Loan report\n"          << RESET;
-    std::cout << "  " << BOLD << CYAN  << "5" << RESET << WHITE << "  User report\n"          << RESET;
+    std::cout << "  " << BOLD << GREEN  << "1" << RESET << WHITE << "  Borrow a resource\n"   << RESET;
+    std::cout << "  " << BOLD << GREEN  << "2" << RESET << WHITE << "  Return a resource\n"   << RESET;
+    std::cout << "  " << BOLD << GREEN  << "3" << RESET << WHITE << "  List available\n"       << RESET;
+    std::cout << "  " << BOLD << GREEN  << "4" << RESET << WHITE << "  Loan report\n"          << RESET;
+    std::cout << "  " << BOLD << GREEN  << "5" << RESET << WHITE << "  User report\n"          << RESET;
     std::cout << "  " << BOLD << RED   << "0" << RESET << WHITE << "  Exit\n"                 << RESET;
 
     rule();
@@ -134,14 +134,14 @@ std::string Display::promptStr(const std::string& label) {
  * @brief Prints a green checkmark followed by the message text.
  */
 void Display::success(const std::string& text) {
-    std::cout << "\n  " << GREEN << "✓  " << RESET << WHITE << text << RESET << "\n";
+    std::cout << "\n  " << GREEN << "✅  " << RESET << WHITE << text << RESET << "\n";
 }
 
 /**
  * @brief Prints a red cross followed by the message text.
  */
 void Display::error(const std::string& text) {
-    std::cout << "\n  " << RED << "✗  " << RESET << WHITE << text << RESET << "\n";
+    std::cout << "\n  " << RED << "❌  " << RESET << WHITE << text << RESET << "\n";
 }
 
 /**
