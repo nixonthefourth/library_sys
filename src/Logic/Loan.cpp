@@ -33,7 +33,6 @@ bool Loan::issueLoan() {
     return true;
 }
 
-
 // Return a loan
 bool Loan::returnLoan() {
 
@@ -47,7 +46,6 @@ bool Loan::returnLoan() {
 
     return true;
 }
-
 
 // Getters
 Person* Loan::getBorrower() const {

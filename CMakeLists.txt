@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(include)
 include_directories(src)
+include_directories(docs)
 
 add_executable(library_sys src/main.cpp
         src/Person.cpp
