@@ -27,3 +27,25 @@ int Person::getID() const {
 std::string Person::getName() const {
     return name;
 }
+
+/**
+ *
+ * @return Returns the number of currently borrowed resources
+ */
+int Person::getCurrentlyBorrowing() const {
+    return currentlyBorrowing;
+}
+
+/**
+ * Increments the number of borrowed elements
+ */
+void Person::incrementBorrowing() {
+    currentlyBorrowing++;
+}
+
+/**
+ * Decrements the number of borrowed elements
+ */
+void Person::decrementBorrowing() {
+    currentlyBorrowing--;
+}

@@ -17,4 +17,6 @@ add_executable(library_sys src/main.cpp
         include/Book.h
         include/Journal.h
         include/Conference.h
+        src/Loan.cpp
+        include/Loan.h
 )

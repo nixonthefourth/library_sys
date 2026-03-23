@@ -30,6 +30,11 @@ public: // Public Accessors
     virtual int getBorrowLimit() const;
     virtual int getID() const;
     virtual std::string getName() const;
+    int getCurrentlyBorrowing() const;
+
+    // Functions
+    void incrementBorrowing();
+    void decrementBorrowing();
 
     // Virtual destructor
     virtual ~Person() = default;

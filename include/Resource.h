@@ -27,9 +27,10 @@ public:
 
     // Accessors
     virtual bool getLend() const;
-    virtual int getID() const;
+    virtual std::string getID() const;
     virtual bool getBorrowed() const;
     virtual std::string getTitle() const;
+    void setBorrowed(bool status);
 
     // Virtual Destructor
     virtual ~Resource() = default;

@@ -17,7 +17,7 @@ bool Resource::getLend() const {
  *
  * @return Returns the ID of the resource
  */
-int Resource::getID() const {
+std::string Resource::getID() const {
     return ID;
 }
 
@@ -35,4 +35,12 @@ bool Resource::getBorrowed() const {
  */
 std::string Resource::getTitle() const {
     return title;
+}
+
+/**
+ *
+ * @param status Sets the resource's status on availibility
+ */
+void Resource::setBorrowed(bool status) {
+    isBorrowed = status;
 }
