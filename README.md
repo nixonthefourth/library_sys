@@ -46,7 +46,7 @@ A command-line library management system implemented in C++20 as part of a unive
 This project uses **CMake** and targets **C++20**. It is developed in **CLion**.
 
 ### Prerequisites
-- CMake 3.20+
+- CMake 4.1+
 - A C++20-compatible compiler (GCC 10+, Clang 12+, or MSVC 2019+)
 
 ### Build Steps
