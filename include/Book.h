@@ -13,7 +13,9 @@
  */
 class Book : public Resource {
 public:
-    Book(int ID, bool isBorrowed, std::string title) : Resource(true, ID, isBorrowed, title) {}
+    Book(const std::string& ID,
+        bool isBorrowed,
+        const std::string& title) : Resource(true, ID, isBorrowed, title) {}
 };
 
 #endif //LIBRARY_SYS_BOOK_H

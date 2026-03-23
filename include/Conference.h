@@ -14,7 +14,7 @@ private: // Private, since applies only to conference
 
 public:
     // Public constructor
-    Conference(int ID, bool isBorrowed, std::string title, std::string acronym)
+    Conference(const std::string& ID, bool isBorrowed, const std::string& title, const std::string& acronym)
         : Resource(false, ID, isBorrowed, title),
           acronym(acronym) {}
 

@@ -13,7 +13,9 @@
  */
 class Journal : public Resource {
 public:
-    Journal(int ID, bool isBorrowed, std::string title) : Resource(true, ID, isBorrowed, title) {}
+    Journal(const std::string& ID,
+        bool isBorrowed,
+        const std::string& title) : Resource(true, ID, isBorrowed, title) {}
 };
 
 #endif //LIBRARY_SYS_JOURNAL_H

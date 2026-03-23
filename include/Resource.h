@@ -13,14 +13,14 @@
 class Resource {
 protected: // Private fields
     bool canLend;
-    int ID;
+    std::string ID;
     bool isBorrowed;
     std::string title;
 
 public:
     // Constructor
     Resource(bool canLend, // Passed by value, since bool is cheaper to copy in memory
-        int ID, // Passed by value, since int is cheaper to copy in memory
+        const std::string& ID, // Passed by reference, since it's cheaper to reference the memory location of string.
         bool isBorrowed, // Passed by value, since bool is cheaper to copy in memory
         const std::string& title // Passed by reference, since it's cheaper to reference the memory location of string.
         ) : canLend(canLend), ID(ID), isBorrowed(isBorrowed), title(title) {}
