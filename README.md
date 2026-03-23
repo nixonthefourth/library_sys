@@ -23,32 +23,6 @@ A command-line library management system implemented in C++20 as part of a unive
 
 ---
 
-## Project Structure
-
-```
-.
-├── CMakeLists.txt
-├── README.md
-├── data/
-│   ├── A2ResourceList.txt.txt       # Input file: library resources
-│   └── A2UserList.txt.txt           # Input file: system users
-├── include/
-│   ├── Person.h            # Base class + Student, Staff, LibStaff
-│   ├── Resource.h          # Base class + Book, Journal, Conference
-│   ├── Loan.h              # Records a single resource loan
-│   ├── ResourceList.h      # Manages the collection of resources
-│   └── UserList.h          # Manages the collection of users
-└── src/
-    ├── main.cpp
-    ├── Person.cpp
-    ├── Resource.cpp
-    ├── Loan.cpp
-    ├── ResourceList.cpp
-    └── UserList.cpp
-```
-
----
-
 ## Class Overview
 
 | Class | Description |
