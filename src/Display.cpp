@@ -147,14 +147,14 @@ void Display::error(const std::string& text) {
 }
 
 /**
- * @brief Prints the section heading in bold cyan, flanked by rules,
+ * @brief Prints the section heading in bold green, flanked by rules,
  *        so each report has a clear visual boundary.
  */
 void Display::heading(const std::string& heading) {
     std::cout << "\n";
     rule();
 
-    std::cout << "  " << BOLD << CYAN << heading << RESET << "\n";
+    std::cout << "  " << BOLD << GREEN << heading << RESET << "\n";
     rule();
 }
 
