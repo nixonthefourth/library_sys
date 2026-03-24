@@ -1,5 +1,5 @@
 //
-// Created by Mykyta Khomiakov on 23/03/2026.
+// Created by Mykyta Khomiakov, 28941190 on 23/03/2026.
 //
 
 #ifndef LIBRARY_SYS_CONFERENCE_H

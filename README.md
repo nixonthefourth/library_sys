@@ -1,6 +1,6 @@
 # University Library Management System
 **CMP2811, Applied Programming Paradigms**  
-*Mykyta Khomiakov*
+*Mykyta Khomiakov, 28941190*
 
 A command-line library management system implemented in C++20. The system allows library staff to manage resources and users, handle borrowing and returning, generate reports, and search the catalogue – all from a styled terminal interface.
 
