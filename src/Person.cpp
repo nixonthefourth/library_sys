@@ -10,7 +10,7 @@
 
 /**
  * @return The maximum number of resources this user is permitted to hold
- *         at any one time.  Set by the subclass constructor.
+ *         at any one time. Set by the subclass constructor.
  */
 int Person::getBorrowLimit() const {
     return borrowLimit;

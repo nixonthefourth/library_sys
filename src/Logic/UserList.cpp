@@ -17,7 +17,8 @@
 /**
  * @brief Parses the user data file into Student, Staff, and LibStaff objects.
  *
- * ### File format
+ * File format
+ *
  * Each non-empty line encodes one user.  The first character is the type
  * code; everything after it is the display name:
  *
@@ -27,20 +28,21 @@
  * | '2'  | Staff    | 2            |
  * | '3'  | LibStaff | 0            |
  *
- * ### Line-ending safety
+ * Line-ending safety
+ *
  * Trailing \r is stripped after each getline call so the loader handles
  * Windows CRLF files correctly on macOS/Linux.  Without this strip, names
  * would be stored with an embedded \r, which causes the terminal cursor to
  * return to column zero mid-line and silently overwrite report output.
  *
- * ### ID assignment
+ * ID assignment
+ *
  * IDs are assigned sequentially starting from 1 and increment only when
  * a valid user is successfully constructed and pushed into the vector.
  *
  * @param filename  Path to the user data file.
  */
 void UserList::loadFromFile(const std::string& filename) {
-
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -76,8 +78,8 @@ void UserList::loadFromFile(const std::string& filename) {
         else if (type == '3') {
             user = new LibStaff(idCounter, name);
         }
-        // Unknown type codes are silently skipped — the ID counter does not advance
 
+        // Unknown type codes are silently skipped – the ID counter does not advance
         if (user != nullptr) {
             users.push_back(user);
             idCounter++;

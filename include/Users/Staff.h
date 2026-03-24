@@ -9,7 +9,7 @@
 #include <string>
 
 /**
- * @brief A university staff member — may hold up to 2 resources at a time.
+ * @brief A university staff member – may hold up to 2 resources at a time.
  *
  * The higher borrow limit reflects staff privileges and is enforced by
  * passing 2 to Person's constructor.
@@ -21,8 +21,8 @@ public:
     /**
      * @brief Constructs a Staff member.
      *
-     * @param ID    Unique integer ID assigned sequentially by UserList.
-     * @param name  Display name read from the user file.
+     * @param ID Unique integer ID assigned sequentially by UserList.
+     * @param name Display name read from the user file.
      */
     Staff(int ID, const std::string& name)
         : Person(2, ID, name, 0) {}

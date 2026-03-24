@@ -29,10 +29,10 @@ public:
     /**
      * @brief Constructs a Conference proceedings entry.
      *
-     * @param ID         Unique string identifier (e.g. "C4").
-     * @param isBorrowed Initial borrowed state — false when loaded from file.
-     * @param title      Full conference name (e.g. "ACM Conference on Computer-Human Interaction").
-     * @param acronym    Year-specific short code (e.g. "CHI2025").
+     * @param ID Unique string identifier (e.g. "C4").
+     * @param isBorrowed Initial borrowed state – false when loaded from file.
+     * @param title Full conference name (e.g. "ACM Conference on Computer-Human Interaction").
+     * @param acronym Year-specific short code (e.g. "CHI2025").
      */
     Conference(const std::string& ID,
                bool isBorrowed,

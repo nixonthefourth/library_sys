@@ -17,18 +17,18 @@
  */
 class Loan {
 private:
-    Person*   borrower;  ///< Non-owning pointer to the user who borrowed the resource
-    Resource* resource;  ///< Non-owning pointer to the borrowed resource
+    Person* borrower;  /// Non-owning pointer to the user who borrowed the resource
+    Resource* resource;  /// Non-owning pointer to the borrowed resource
 
 public:
 
     /**
      * @brief Constructs a Loan between a borrower and a resource.
      *
-     * Does not modify either object — call issueLoan() to apply the loan.
+     * Does not modify either object – call issueLoan() to apply the loan.
      *
-     * @param borrower  Pointer to the Person borrowing the resource.
-     * @param resource  Pointer to the Resource being borrowed.
+     * @param borrower Pointer to the Person borrowing the resource.
+     * @param resource Pointer to the Resource being borrowed.
      */
     Loan(Person* borrower, Resource* resource);
 

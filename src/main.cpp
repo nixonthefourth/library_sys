@@ -16,7 +16,6 @@
  * @return 0 on clean exit.
  */
 int main() {
-
     LibrarySystem system;
 
     // Animate the banner before loading so there is something on screen
@@ -30,7 +29,7 @@ int main() {
 
         Display::menu();
 
-        // Prompt for menu choice — reuse the styled prompt
+        // Prompt for menu choice, reuses the styled prompt
         choice = Display::promptInt("choice");
 
         // Flush any leftover newline so subsequent getlines behave
@@ -43,14 +42,14 @@ int main() {
 
         // ---- 1. Borrow ----
         if (choice == 1) {
-            int         userID     = Display::promptInt("user ID");
+            int userID = Display::promptInt("user ID");
             std::string resourceID = Display::promptStr("resource ID");
             system.borrowResource(userID, resourceID);
         }
 
         // ---- 2. Return ----
         else if (choice == 2) {
-            int         userID     = Display::promptInt("user ID");
+            int userID = Display::promptInt("user ID");
             std::string resourceID = Display::promptStr("resource ID");
             system.returnResource(userID, resourceID);
         }
@@ -71,7 +70,7 @@ int main() {
         }
 
         else {
-            Display::error("Unknown option — please enter a number from the menu.");
+            Display::error("Unknown option – please enter a number from the menu.");
         }
     }
 

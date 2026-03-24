@@ -9,10 +9,10 @@
 #include <string>
 
 /**
- * @brief A library staff member — cannot borrow any resources.
+ * @brief A library staff member – cannot borrow any resources.
  *
  * The borrow limit of 0 ensures issueLoan() will always reject a borrow
- * attempt for this user type.  Library staff exist in the system to
+ * attempt for this user type. Library staff exist in the system to
  * process loans on behalf of others, not to borrow themselves.
  * Type code in A2UserList.txt: '3'.
  */
@@ -22,8 +22,8 @@ public:
     /**
      * @brief Constructs a LibStaff member.
      *
-     * @param ID    Unique integer ID assigned sequentially by UserList.
-     * @param name  Display name read from the user file.
+     * @param ID Unique integer ID assigned sequentially by UserList.
+     * @param name Display name read from the user file.
      */
     LibStaff(int ID, const std::string& name)
         : Person(0, ID, name, 0) {}

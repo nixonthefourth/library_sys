@@ -20,7 +20,7 @@
  */
 class UserList {
 private:
-    std::vector<Person*> users; ///< Heap-allocated user objects, owned by this list
+    std::vector<Person*> users; /// Heap-allocated user objects, owned by this list
 
 public:
 
@@ -32,7 +32,7 @@ public:
      * is the display name.  Trailing \r is stripped so the loader is robust
      * against Windows CRLF line endings on macOS/Linux.
      *
-     * @param filename  Path to the user data file (relative to the working directory).
+     * @param filename Path to the user data file (relative to the working directory).
      */
     void loadFromFile(const std::string& filename);
 
@@ -45,12 +45,12 @@ public:
     /**
      * @brief Looks up a user by their integer ID.
      *
-     * @param id  The ID to search for.
-     * @return    Pointer to the matching Person, or nullptr if not found.
+     * @param id The ID to search for.
+     * @return Pointer to the matching Person, or nullptr if not found.
      */
     Person* findByID(int id) const;
 
-    /// Destructor — deletes all heap-allocated Person objects.
+    /// Destructor – deletes all heap-allocated Person objects.
     ~UserList();
 };
 

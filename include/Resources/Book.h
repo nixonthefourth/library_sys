@@ -21,9 +21,9 @@ public:
     /**
      * @brief Constructs a Book.
      *
-     * @param ID         Unique string identifier (e.g. "B3").
-     * @param isBorrowed Initial borrowed state — false when loaded from file.
-     * @param title      Human-readable title.
+     * @param ID Unique string identifier (e.g. "B3").
+     * @param isBorrowed Initial borrowed state – false when loaded from file.
+     * @param title User-readable title.
      */
     Book(const std::string& ID,
          bool isBorrowed,

@@ -40,22 +40,22 @@ Loan::Loan(Person* borrower, Resource* resource)
  */
 bool Loan::issueLoan() {
 
-    // Check 1 — resource type permits lending
+    // Checkpoint 1 – resource type permits lending
     if (!resource->getLend()) {
         return false;
     }
 
-    // Check 2 — resource is currently available
+    // Checkpoint 2 – resource is currently available
     if (resource->getBorrowed()) {
         return false;
     }
 
-    // Check 3 — borrower has capacity for another resource
+    // Checkpoint 3 – borrower has capacity for another resource
     if (borrower->getCurrentlyBorrowing() >= borrower->getBorrowLimit()) {
         return false;
     }
 
-    // All checks passed — apply the loan
+    // All checks passed – apply the loan
     resource->setBorrowed(true);
     borrower->incrementBorrowing();
 
@@ -73,7 +73,7 @@ bool Loan::issueLoan() {
  */
 bool Loan::returnLoan() {
 
-    // Guard — shouldn't happen under normal flow, but defensive is good
+    // Guard – shouldn't happen under normal flow, but defensive is good
     if (!resource->getBorrowed()) {
         return false;
     }

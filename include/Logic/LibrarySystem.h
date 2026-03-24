@@ -20,9 +20,9 @@
  */
 class LibrarySystem {
 private:
-    ResourceList        resources;  ///< All resources loaded from file
-    UserList            users;      ///< All users loaded from file
-    std::vector<Loan>   loans;      ///< Currently active loans
+    ResourceList resources; /// All resources loaded from file
+    UserList users; /// All users loaded from file
+    std::vector<Loan> loans; /// Currently active loans
 
 public:
 
@@ -37,8 +37,8 @@ public:
     /**
      * @brief Attempts to issue a loan for the given user and resource.
      *
-     * @param userID      Integer ID of the borrowing user.
-     * @param resourceID  String ID of the resource (e.g. "B3", "J1").
+     * @param userID Integer ID of the borrowing user.
+     * @param resourceID String ID of the resource (e.g. "B3", "J1").
      * @return true on success; false if the user / resource was not found
      *         or the borrow conditions were not met.
      */
@@ -47,8 +47,8 @@ public:
     /**
      * @brief Processes a return for the given user and resource.
      *
-     * @param userID      Integer ID of the returning user.
-     * @param resourceID  String ID of the resource being returned.
+     * @param userID Integer ID of the returning user.
+     * @param resourceID String ID of the resource being returned.
      * @return true if a matching loan was found and cleared; false otherwise.
      */
     bool returnResource(int userID, const std::string& resourceID);

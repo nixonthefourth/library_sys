@@ -15,7 +15,7 @@
  * @brief Loads resource and user data from their respective text files.
  *
  * Paths are relative to the project root so the executable must be run
- * from there (or from cmake-build-debug with the ../docs prefix intact).
+ * from there (or from cmake-build-debug with the ../docs prefix present).
  */
 void LibrarySystem::loadData() {
     std::cout << Display::DIM << "  Loading resources..." << Display::RESET << "\n";
@@ -37,12 +37,12 @@ void LibrarySystem::loadData() {
  * Looks up both entities by ID, constructs a Loan, and calls issueLoan().
  * If the loan is issued it is stored in the loans vector.
  *
- * @param userID      Integer ID of the borrowing user.
- * @param resourceID  String ID of the target resource (e.g. "B3", "J1").
+ * @param userID Integer ID of the borrowing user.
+ * @param resourceID String ID of the target resource (e.g. "B3", "J1").
  * @return true if the loan was created; false otherwise.
  */
 bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
-    Person*   user     = users.findByID(userID);
+    Person* user = users.findByID(userID);
     Resource* resource = resources.findByID(resourceID);
 
     if (!user || !resource) {
@@ -56,6 +56,7 @@ bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
         loans.push_back(loan);
         Display::success("Loan created — " + resource->getTitle()
                          + " is now checked out to " + user->getName() + ".");
+
         return true;
     }
 
@@ -82,8 +83,8 @@ bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
  * Iterates the loans vector looking for a matching (userID, resourceID) pair.
  * On a match, returnLoan() is called and the entry is erased from the vector.
  *
- * @param userID      Integer ID of the returning user.
- * @param resourceID  String ID of the resource being returned.
+ * @param userID Integer ID of the returning user.
+ * @param resourceID String ID of the resource being returned.
  * @return true if the loan was found and returned; false otherwise.
  */
 bool LibrarySystem::returnResource(int userID, const std::string& resourceID) {
@@ -101,7 +102,7 @@ bool LibrarySystem::returnResource(int userID, const std::string& resourceID) {
         }
     }
 
-    Display::error("No matching loan found — verify the user ID and resource ID.");
+    Display::error("No matching loan found – verify the user ID and resource ID.");
     return false;
 }
 
@@ -121,7 +122,7 @@ void LibrarySystem::listAvailableResources() const {
     bool any = false;
 
     for (auto r : resources.getResources()) {
-        if (!r->getBorrowed() && r->getLend()) {
+        if (!r->getBorrowed()) {
             Display::row(r->getID(), r->getTitle());
             any = true;
         }

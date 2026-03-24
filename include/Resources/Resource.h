@@ -19,20 +19,20 @@
  */
 class Resource {
 protected:
-    bool        canLend;    ///< Whether this resource type can be loaned out
-    std::string ID;         ///< Unique string identifier (e.g. "B3", "J1", "C7")
-    bool        isBorrowed; ///< True while the resource is on loan
-    std::string title;      ///< Human-readable title of the resource
+    bool canLend; /// Whether this resource type can be loaned out
+    std::string ID; /// Unique string identifier (e.g. "B3", "J1", "C7")
+    bool isBorrowed; /// True while the resource is on loan
+    std::string title; /// Human-readable title of the resource
 
 public:
 
     /**
      * @brief Constructs a Resource with all core fields.
      *
-     * @param canLend    Passed by value — bool is cheaper to copy than reference.
-     * @param ID         Passed by const-ref — avoids copying the string.
-     * @param isBorrowed Passed by value — bool is cheaper to copy than reference.
-     * @param title      Passed by const-ref — avoids copying the string.
+     * @param canLend Passed by value – bool is cheaper to copy than reference.
+     * @param ID Passed by const-ref – avoids copying the string.
+     * @param isBorrowed Passed by value – bool is cheaper to copy than reference.
+     * @param title Passed by const-ref - avoids copying the string.
      */
     Resource(bool canLend,
              const std::string& ID,
@@ -63,14 +63,14 @@ public:
     /**
      * @brief Sets the borrowed flag directly.
      *
-     * Called by Loan::issueLoan() and Loan::returnLoan() — not intended
+     * Called by Loan::issueLoan() and Loan::returnLoan() – not intended
      * for use outside the loan management flow.
      *
-     * @param status  True to mark as borrowed; false to mark as available.
+     * @param status True to mark as borrowed; false to mark as available.
      */
     void setBorrowed(bool status);
 
-    /// Virtual destructor — required for safe polymorphic deletion.
+    /// Virtual destructor – required for safe polymorphic deletion.
     virtual ~Resource() = default;
 };
 

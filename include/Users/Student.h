@@ -9,7 +9,7 @@
 #include <string>
 
 /**
- * @brief A student user — may hold up to 1 resource at a time.
+ * @brief A student user – may hold up to 1 resource at a time.
  *
  * The borrow limit of 1 is enforced by passing it to Person's constructor;
  * no additional logic is needed here.
@@ -21,8 +21,8 @@ public:
     /**
      * @brief Constructs a Student.
      *
-     * @param ID    Unique integer ID assigned sequentially by UserList.
-     * @param name  Display name read from the user file.
+     * @param ID Unique integer ID assigned sequentially by UserList.
+     * @param name Display name read from the user file.
      */
     Student(int ID, const std::string& name)
         : Person(1, ID, name, 0) {}

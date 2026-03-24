@@ -13,7 +13,7 @@
 
 /**
  * @brief Prints each character individually with a short sleep between them,
- *        replicating the C# DisplayMessage typewriter effect.
+ *        replicating the typewriter effect.
  *
  * std::cout.flush() is called after every character so the terminal renders
  * it immediately rather than buffering the whole string first.
@@ -35,7 +35,7 @@ void Display::typewriteLine(const std::string& text, int delayMs) {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Structural chrome
+// Structural utensils
 // ────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -92,12 +92,12 @@ void Display::menu() {
     rule();
 
     // Each option: coloured key  plain label
-    std::cout << "  " << BOLD << GREEN  << "1" << RESET << WHITE << "  Borrow a resource\n"   << RESET;
-    std::cout << "  " << BOLD << GREEN  << "2" << RESET << WHITE << "  Return a resource\n"   << RESET;
-    std::cout << "  " << BOLD << GREEN  << "3" << RESET << WHITE << "  List available\n"       << RESET;
-    std::cout << "  " << BOLD << GREEN  << "4" << RESET << WHITE << "  Loan report\n"          << RESET;
-    std::cout << "  " << BOLD << GREEN  << "5" << RESET << WHITE << "  User report\n"          << RESET;
-    std::cout << "  " << BOLD << RED   << "0" << RESET << WHITE << "  Exit\n"                 << RESET;
+    std::cout << "  " << BOLD << GREEN  << "1" << RESET << WHITE << "  Borrow a resource\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "2" << RESET << WHITE << "  Return a resource\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "3" << RESET << WHITE << "  List available\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "4" << RESET << WHITE << "  Loan report\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "5" << RESET << WHITE << "  User report\n" << RESET;
+    std::cout << "  " << BOLD << RED   << "0" << RESET << WHITE << "  Exit\n" << RESET;
 
     rule();
 }
@@ -109,12 +109,13 @@ void Display::menu() {
 /**
  * @brief Displays a right-pointing arrow prompt in yellow, then reads an int.
  *
- * @param label  The field name shown next to the arrow.
+ * @param label The field name shown next to the arrow.
  */
 int Display::promptInt(const std::string& label) {
     int value;
     std::cout << YELLOW << "  > " << WHITE << label << " : " << RESET;
     std::cin  >> value;
+
     return value;
 }
 
@@ -127,6 +128,7 @@ std::string Display::promptStr(const std::string& label) {
     std::string value;
     std::cout << YELLOW << "  > " << WHITE << label << " : " << RESET;
     std::cin  >> value;
+
     return value;
 }
 
@@ -151,6 +153,7 @@ void Display::error(const std::string& text) {
 void Display::heading(const std::string& heading) {
     std::cout << "\n";
     rule();
+
     std::cout << "  " << BOLD << CYAN << heading << RESET << "\n";
     rule();
 }
