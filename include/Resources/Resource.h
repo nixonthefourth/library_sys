@@ -14,6 +14,9 @@
  * Concrete subclasses pass their type-specific lendability flag through
  * the constructor rather than overriding getLend(), keeping the hierarchy flat.
  *
+ * The author field is populated for Books; it is left empty for Journals
+ * and Conferences, which have no single author in the data file.
+ *
  * All accessors are virtual so any future subclass can override them
  * without changing calling code in LibrarySystem.
  */
@@ -23,6 +26,7 @@ protected:
     std::string ID; /// Unique string identifier (e.g. "B3", "J1", "C7")
     bool isBorrowed; /// True while the resource is on loan
     std::string title; /// Human-readable title of the resource
+    std::string author; /// Author name – populated for Books; empty for others
 
 public:
 
@@ -32,45 +36,34 @@ public:
      * @param canLend Passed by value – bool is cheaper to copy than reference.
      * @param ID Passed by const-ref – avoids copying the string.
      * @param isBorrowed Passed by value – bool is cheaper to copy than reference.
-     * @param title Passed by const-ref - avoids copying the string.
+     * @param title Passed by const-ref – avoids copying the string.
+     * @param author Passed by const-ref – avoids copying the string. Empty by default.
      */
     Resource(bool canLend,
              const std::string& ID,
              bool isBorrowed,
-             const std::string& title)
-        : canLend(canLend), ID(ID), isBorrowed(isBorrowed), title(title) {}
+             const std::string& title,
+             const std::string& author = "")
+        : canLend(canLend), ID(ID), isBorrowed(isBorrowed),
+          title(title), author(author) {}
 
-    /**
-     * @return Whether this resource type permits lending.
-     */
     virtual bool getLend() const;
-
-    /**
-     * @return The unique string ID of this resource.
-     */
     virtual std::string getID() const;
-
-    /**
-     * @return True if the resource is currently on loan.
-     */
     virtual bool getBorrowed() const;
-
-    /**
-     * @return The human-readable title of this resource.
-     */
     virtual std::string getTitle() const;
 
     /**
-     * @brief Sets the borrowed flag directly.
-     *
-     * Called by Loan::issueLoan() and Loan::returnLoan() – not intended
-     * for use outside the loan management flow.
-     *
-     * @param status True to mark as borrowed; false to mark as available.
+     * @return The author name, or an empty string for non-book resources.
+     */
+    virtual std::string getAuthor() const;
+
+    /**
+     * @brief Sets the borrowed flag.
+     * Called by Loan::issueLoan() and Loan::returnLoan() only.
+     * @param status True = borrowed; false = available.
      */
     void setBorrowed(bool status);
 
-    /// Virtual destructor – required for safe polymorphic deletion.
     virtual ~Resource() = default;
 };
 

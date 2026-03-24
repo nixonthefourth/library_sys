@@ -13,12 +13,17 @@
  * Boots the LibrarySystem, plays the startup banner, then runs the main
  * menu loop until the user chooses to exit.
  *
+ * Options 3 and 4 (list available / loan report) ask for sort preferences
+ * before delegating to LibrarySystem. Option 5 (user report) asks whether
+ * the output should also be saved to a file. Options 6 and 7 are the
+ * extended keyword search and activity log features respectively.
+ *
  * @return 0 on clean exit.
  */
 int main() {
     LibrarySystem system;
 
-    // Animate the banner before loading so there is something on screen
+    // Animate the banner before loading so the screen is not blank on launch
     Display::banner();
 
     system.loadData();
@@ -29,10 +34,9 @@ int main() {
 
         Display::menu();
 
-        // Prompt for menu choice, reuses the styled prompt
         choice = Display::promptInt("choice");
 
-        // Flush any leftover newline so subsequent getlines behave
+        // Flush the leftover newline so subsequent reads behave correctly
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         if (choice == 0) {
@@ -43,30 +47,54 @@ int main() {
         // ---- 1. Borrow ----
         if (choice == 1) {
             int userID = Display::promptInt("user ID");
-            std::string resourceID = Display::promptStr("resource ID");
-            system.borrowResource(userID, resourceID);
+            std::string resID = Display::promptStr("resource ID");
+            system.borrowResource(userID, resID);
         }
 
         // ---- 2. Return ----
         else if (choice == 2) {
             int userID = Display::promptInt("user ID");
-            std::string resourceID = Display::promptStr("resource ID");
-            system.returnResource(userID, resourceID);
+            std::string resID = Display::promptStr("resource ID");
+            system.returnResource(userID, resID);
         }
 
-        // ---- 3. List available ----
+        // ---- 3. List available (with sort) ----
         else if (choice == 3) {
-            system.listAvailableResources();
+            char order = 'a', field = 't';
+            Display::sortMenu(order, field);
+
+            system.listAvailableResources(
+                order == 'd' ? SortOrder::Descending : SortOrder::Ascending,
+                field == 'a' ? SortField::Author : SortField::Title
+            );
         }
 
-        // ---- 4. Loan report ----
+        // ---- 4. Loan report (with sort) ----
         else if (choice == 4) {
-            system.reportLoanedResources();
+            char order = 'a', field = 't';
+            Display::sortMenu(order, field);
+
+            system.reportLoanedResources(
+                order == 'd' ? SortOrder::Descending : SortOrder::Ascending,
+                field == 'a' ? SortField::Author : SortField::Title
+            );
         }
 
-        // ---- 5. User report ----
+        // ---- 5. User report (optional file save) ----
         else if (choice == 5) {
-            system.reportUsersWithLoans();
+            bool save = Display::saveReportPrompt();
+            system.reportUsersWithLoans(save);
+        }
+
+        // ---- 6. Search ----
+        else if (choice == 6) {
+            std::string keyword = Display::promptStr("search keyword");
+            system.searchResources(keyword);
+        }
+
+        // ---- 7. Activity log ----
+        else if (choice == 7) {
+            system.displayActivityLog();
         }
 
         else {

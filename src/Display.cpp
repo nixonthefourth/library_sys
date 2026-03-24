@@ -35,7 +35,7 @@ void Display::typewriteLine(const std::string& text, int delayMs) {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Structural utensils
+// Structural chrome
 // ────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -76,13 +76,13 @@ void Display::banner() {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Menu
+// Menus
 // ────────────────────────────────────────────────────────────────────────────
 
 /**
- * @brief Renders the six-option main menu.
+ * @brief Renders the nine-option main menu.
  *
- * Shortcut digits are printed in bold cyan to draw the eye; option labels
+ * Shortcut digits are printed in bold green to draw the eye; option labels
  * are plain white so the layout stays readable without being loud.
  */
 void Display::menu() {
@@ -91,15 +91,63 @@ void Display::menu() {
     std::cout << BOLD << WHITE << "  MENU\n" << RESET;
     rule();
 
-    // Each option: coloured key  plain label
     std::cout << "  " << BOLD << GREEN  << "1" << RESET << WHITE << "  Borrow a resource\n" << RESET;
     std::cout << "  " << BOLD << GREEN  << "2" << RESET << WHITE << "  Return a resource\n" << RESET;
     std::cout << "  " << BOLD << GREEN  << "3" << RESET << WHITE << "  List available\n" << RESET;
     std::cout << "  " << BOLD << GREEN  << "4" << RESET << WHITE << "  Loan report\n" << RESET;
     std::cout << "  " << BOLD << GREEN  << "5" << RESET << WHITE << "  User report\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "6" << RESET << WHITE << "  Search resources\n" << RESET;
+    std::cout << "  " << BOLD << GREEN  << "7" << RESET << WHITE << "  Activity log\n" << RESET;
     std::cout << "  " << BOLD << RED   << "0" << RESET << WHITE << "  Exit\n" << RESET;
 
     rule();
+}
+
+/**
+ * @brief Asks the user to choose sort order and sort field.
+ *
+ * Reads two single-character choices from stdin and returns them via
+ * output parameters.  Invalid input defaults to ascending / title.
+ *
+ * @param outOrder Set to 'a' (ascending) or 'd' (descending).
+ * @param outField Set to 't' (title) or 'a' (author).
+ */
+void Display::sortMenu(char& outOrder, char& outField) {
+    std::cout << "\n";
+    rule();
+    std::cout << BOLD << WHITE << "  SORT OPTIONS\n" << RESET;
+    rule();
+
+    std::cout << "  " << DIM  << "Order:\n" << RESET;
+    std::cout << "  " << BOLD << GREEN << "a" << RESET << WHITE << "  Ascending  (A → Z)\n"  << RESET;
+    std::cout << "  " << BOLD << GREEN << "d" << RESET << WHITE << "  Descending (Z → A)\n" << RESET;
+    std::cout << YELLOW << "  > " << WHITE << "order : " << RESET;
+    std::cin  >> outOrder;
+
+    std::cout << "\n";
+    std::cout << "  " << DIM  << "Sort by:\n" << RESET;
+    std::cout << "  " << BOLD << GREEN << "t" << RESET << WHITE << "  Title\n"  << RESET;
+    std::cout << "  " << BOLD << GREEN << "a" << RESET << WHITE << "  Author\n" << RESET;
+    std::cout << YELLOW << "  > " << WHITE << "field : " << RESET;
+    std::cin  >> outField;
+
+    rule();
+}
+
+/**
+ * @brief Asks whether the user report should be saved to an external file.
+ *
+ * @return true if the user answered 'y' or 'Y'.
+ */
+bool Display::saveReportPrompt() {
+    char c;
+    std::cout << "\n  " << DIM << "Save report to file?" << RESET
+              << "  " << BOLD << GREEN << "y" << RESET
+              << " / "
+              << BOLD << GREEN << "n" << RESET
+              << "  :  ";
+    std::cin  >> c;
+    return (c == 'y' || c == 'Y');
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -115,20 +163,18 @@ int Display::promptInt(const std::string& label) {
     int value;
     std::cout << YELLOW << "  > " << WHITE << label << " : " << RESET;
     std::cin  >> value;
-
     return value;
 }
 
 /**
  * @brief Displays a right-pointing arrow prompt in yellow, then reads a string.
  *
- * @param label  The field name shown next to the arrow.
+ * @param label The field name shown next to the arrow.
  */
 std::string Display::promptStr(const std::string& label) {
     std::string value;
     std::cout << YELLOW << "  > " << WHITE << label << " : " << RESET;
     std::cin  >> value;
-
     return value;
 }
 
@@ -175,11 +221,11 @@ void Display::loanRow(const std::string& resourceTitle,
                       const std::string& borrowerName) {
     std::cout << "  " << WHITE << resourceTitle << RESET
               << GREY << DIM << "  →  " << RESET
-              << CYAN << borrowerName << RESET << "\n";
+              << GREEN << borrowerName << RESET << "\n";
 }
 
 /**
- * @brief Shows a dimmed italics-style notice when a list or report has no rows.
+ * @brief Shows a dimmed notice when a list or report has no rows to display.
  */
 void Display::empty(const std::string& context) {
     std::cout << "\n  " << DIM << GREY << "(no " << context << " to display)" << RESET << "\n";
