@@ -27,21 +27,21 @@ A command-line library management system implemented in C++20. The system allows
 
 ## Class Overview
 
-| Class | Role | Borrow Limit |
-|---|---|---|
-| `Person` | Base class for all system users | — |
-| `Student` | Inherits from `Person` | 1 resource |
-| `Staff` | Inherits from `Person` | 2 resources |
-| `LibStaff` | Inherits from `Person` | 0 resources |
-| `Resource` | Base class for all library resources | — |
-| `Book` | Inherits from `Resource` — borrowable | — |
-| `Journal` | Inherits from `Resource` — borrowable | — |
-| `Conference` | Inherits from `Resource` — reference only, not borrowable | — |
-| `Loan` | Associates one `Resource` with one `Person` | — |
-| `ResourceList` | Owns and manages all `Resource` objects | — |
-| `UserList` | Owns and manages all `Person` objects | — |
-| `LibrarySystem` | Top-level controller — orchestrates all operations | — |
-| `Display` | Static helper — owns all terminal rendering and ANSI styling | — |
+| Class | Role                                                         | Borrow Limit |
+|---|--------------------------------------------------------------|--------------|
+| `Person` | Base class for all system users                              | –            |
+| `Student` | Inherits from `Person`                                       | 1 resource   |
+| `Staff` | Inherits from `Person`                                       | 2 resources  |
+| `LibStaff` | Inherits from `Person`                                       | 0 resources  |
+| `Resource` | Base class for all library resources                         | –            |
+| `Book` | Inherits from `Resource` – borrowable                        | –            |
+| `Journal` | Inherits from `Resource` – borrowable                        | –            |
+| `Conference` | Inherits from `Resource` – reference only, not borrowable    | –            |
+| `Loan` | Associates one `Resource` with one `Person`                  | –            |
+| `ResourceList` | Owns and manages all `Resource` objects                      | –            |
+| `UserList` | Owns and manages all `Person` objects                        | –            |
+| `LibrarySystem` | Top-level controller – orchestrates all operations           | –            |
+| `Display` | Static helper – owns all terminal rendering and ANSI styling | –            |
 
 ---
 
@@ -145,12 +145,12 @@ On launch, resources and users are loaded automatically. A styled menu is then p
 ### Sorting (options 3 and 4)
 
 When listing available resources or viewing the loan report, you will be asked for:
-- **Order**: `a` for ascending (A → Z), `d` for descending (Z → A)
+- **Order**: `a` for ascending (A to Z), `d` for descending (Z to A)
 - **Field**: `t` to sort by title, `a` to sort by author
 
 ### Saving the user report (option 5)
 
-After the report is printed, you will be asked whether to save it to `user_report.txt` in the working directory.
+After the report is printed, you will be asked whether to save it to `user_report.txt` in the working directory (usually `cmake-build-debug`).
 
 ### Search (option 6)
 
