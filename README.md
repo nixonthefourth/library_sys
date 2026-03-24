@@ -20,7 +20,7 @@ A command-line library management system implemented in C++20. The system allows
 ### Extended
 - Sort available and loaned resource listings ascending or descending by **title** or **author**
 - Save the borrowed-users report to an external text file (`user_report.txt`)
-- Keyword search across resource titles, authors, and conference acronyms — results sorted alphabetically
+- Keyword search across resource titles, authors, and conference acronyms, where the results sorted alphabetically
 - Chronological activity log of all borrowing and returning events, viewable on demand
 
 ---
