@@ -113,10 +113,10 @@ void LibrarySystem::logActivity(const std::string& entry) {
  */
 void LibrarySystem::loadData() {
     std::cout << Display::DIM << "  Loading resources..." << Display::RESET << "\n";
-    resources.loadFromFile("../docs/A2ResourceList.txt");
+    resources.loadFromFile("docs/A2ResourceList.txt");
 
     std::cout << Display::DIM << "  Loading users..." << Display::RESET << "\n";
-    users.loadFromFile("../docs/A2UserList.txt");
+    users.loadFromFile("docs/A2UserList.txt");
 
     std::cout << "\n";
 }

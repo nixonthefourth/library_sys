@@ -21,6 +21,8 @@
  * @return 0 on clean exit.
  */
 int main() {
+    setlocale(LC_ALL, ".utf8");
+
     LibrarySystem system;
 
     // Animate the banner before loading so the screen is not blank on launch

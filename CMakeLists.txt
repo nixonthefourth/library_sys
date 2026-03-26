@@ -29,3 +29,11 @@ add_executable(library_sys src/main.cpp
         src/Display.cpp
         include/Display.h
 )
+
+
+add_custom_command(
+        TARGET library_sys
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/docs/ ${CMAKE_CURRENT_BINARY_DIR}/docs/
+        COMMENT "Asset copy to the build directory"
+)
