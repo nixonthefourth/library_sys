@@ -119,8 +119,8 @@ void Display::sortMenu(char& outOrder, char& outField) {
     rule();
 
     std::cout << "  " << DIM  << "Order:\n" << RESET;
-    std::cout << "  " << BOLD << GREEN << "a" << RESET << WHITE << "  Ascending  (A → Z)\n"  << RESET;
-    std::cout << "  " << BOLD << GREEN << "d" << RESET << WHITE << "  Descending (Z → A)\n" << RESET;
+    std::cout << "  " << BOLD << GREEN << "a" << RESET << WHITE << "  Ascending  (A to Z)\n"  << RESET;
+    std::cout << "  " << BOLD << GREEN << "d" << RESET << WHITE << "  Descending (Z to A)\n" << RESET;
     std::cout << YELLOW << "  > " << WHITE << "order : " << RESET;
     std::cin  >> outOrder;
 
