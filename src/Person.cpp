@@ -4,9 +4,7 @@
 
 #include "../include/Users/Person.h"
 
-// ────────────────────────────────────────────────────────────────────────────
 // Accessors
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @return The maximum number of resources this user is permitted to hold
@@ -39,9 +37,7 @@ int Person::getCurrentlyBorrowing() const {
     return currentlyBorrowing;
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Borrow count management
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Increments the borrowed resource count by one.

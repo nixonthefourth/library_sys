@@ -4,9 +4,7 @@
 
 #include "../../include/Logic/Loan.h"
 
-// ────────────────────────────────────────────────────────────────────────────
 // Constructor
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Stores the borrower and resource pointers.
@@ -21,9 +19,7 @@
 Loan::Loan(Person* borrower, Resource* resource)
     : borrower(borrower), resource(resource) {}
 
-// ────────────────────────────────────────────────────────────────────────────
 // Loan lifecycle
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Validates all preconditions and applies the loan if they pass.
@@ -84,9 +80,7 @@ bool Loan::returnLoan() {
     return true;
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Accessors
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @return Non-owning pointer to the Person who holds this loan.

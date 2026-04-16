@@ -7,9 +7,7 @@
 #include <chrono>
 #include <thread>
 
-// ────────────────────────────────────────────────────────────────────────────
 // Core effects
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Prints each character individually with a short sleep between them,
@@ -34,9 +32,7 @@ void Display::typewriteLine(const std::string& text, int delayMs) {
     std::cout << "\n";
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Structural chrome
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Sends the ANSI "erase screen / move cursor home" sequence.
@@ -75,9 +71,7 @@ void Display::banner() {
     std::cout << "\n";
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Menus
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Renders the nine-option main menu.
@@ -150,9 +144,7 @@ bool Display::saveReportPrompt() {
     return (c == 'y' || c == 'Y');
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Prompts & feedback
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Displays a right-pointing arrow prompt in yellow, then reads an int.
@@ -182,14 +174,14 @@ std::string Display::promptStr(const std::string& label) {
  * @brief Prints a green checkmark followed by the message text.
  */
 void Display::success(const std::string& text) {
-    std::cout << "\n  " << GREEN << "✅  " << RESET << WHITE << text << RESET << "\n";
+    std::cout << "\n  " << GREEN << RESET << WHITE << text << RESET << "\n";
 }
 
 /**
  * @brief Prints a red cross followed by the message text.
  */
 void Display::error(const std::string& text) {
-    std::cout << "\n  " << RED << "❌  " << RESET << WHITE << text << RESET << "\n";
+    std::cout << "\n  " << RED << RESET << WHITE << text << RESET << "\n";
 }
 
 /**
@@ -220,7 +212,7 @@ void Display::row(const std::string& id, const std::string& label) {
 void Display::loanRow(const std::string& resourceTitle,
                       const std::string& borrowerName) {
     std::cout << "  " << WHITE << resourceTitle << RESET
-              << GREY << DIM << "  →  " << RESET
+              << GREY << DIM << "  to  " << RESET
               << GREEN << borrowerName << RESET << "\n";
 }
 

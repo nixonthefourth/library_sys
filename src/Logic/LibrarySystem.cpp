@@ -12,9 +12,7 @@
 #include <chrono>
 #include <ctime>
 
-// ────────────────────────────────────────────────────────────────────────────
 // Internal helpers
-// ────────────────────────────────────────────────────────────────────────────
 
 namespace {
 
@@ -89,9 +87,7 @@ namespace {
 
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Activity log
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Prepends a timestamp and appends the entry to the log vector.
@@ -104,9 +100,7 @@ void LibrarySystem::logActivity(const std::string& entry) {
     activityLog.push_back("[" + timestamp() + "]  " + entry);
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Data loading
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Loads resource and user data from their respective text files.
@@ -121,9 +115,7 @@ void LibrarySystem::loadData() {
     std::cout << "\n";
 }
 
-// ────────────────────────────────────────────────────────────────────────────
-// Core — Borrowing
-// ────────────────────────────────────────────────────────────────────────────
+// Core – Borrowing
 
 /**
  * @brief Looks up both entities by ID, constructs a Loan, and calls issueLoan().
@@ -140,7 +132,7 @@ bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
     Resource* resource = resources.findByID(resourceID);
 
     if (!user || !resource) {
-        Display::error("User or resource not found — check the IDs and try again.");
+        Display::error("User or resource not found – check the IDs and try again.");
         return false;
     }
 
@@ -148,8 +140,8 @@ bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
 
     if (loan.issueLoan()) {
         loans.push_back(loan);
-        logActivity("BORROW  " + resource->getTitle() + "  →  " + user->getName());
-        Display::success("Loan created — " + resource->getTitle()
+        logActivity("LOANED  " + resource->getTitle() + "  to  " + user->getName());
+        Display::success("Loan created – " + resource->getTitle()
                          + " is now checked out to " + user->getName() + ".");
         return true;
     }
@@ -160,7 +152,7 @@ bool LibrarySystem::borrowResource(int userID, const std::string& resourceID) {
     } else if (resource->getBorrowed()) {
         Display::error("That resource is already on loan.");
     } else {
-        Display::error("Borrow limit reached — " + user->getName()
+        Display::error("Borrow limit reached – " + user->getName()
                        + " cannot borrow any more resources.");
     }
 

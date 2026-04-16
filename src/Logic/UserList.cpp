@@ -10,9 +10,7 @@
 #include <fstream>
 #include <iostream>
 
-// ────────────────────────────────────────────────────────────────────────────
 // File parsing
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Parses the user data file into Student, Staff, and LibStaff objects.
@@ -31,7 +29,7 @@
  * Line-ending safety
  *
  * Trailing \r is stripped after each getline call so the loader handles
- * Windows CRLF files correctly on macOS/Linux.  Without this strip, names
+ * Windows CRLF files correctly on macOS/Linux. Without this strip, names
  * would be stored with an embedded \r, which causes the terminal cursor to
  * return to column zero mid-line and silently overwrite report output.
  *
@@ -90,9 +88,7 @@ void UserList::loadFromFile(const std::string& filename) {
     file.close();
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Accessors
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @return A copy of the internal user pointer vector.
@@ -118,9 +114,7 @@ Person* UserList::findByID(int id) const {
     return nullptr;
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Destructor
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Deletes all heap-allocated Person objects.

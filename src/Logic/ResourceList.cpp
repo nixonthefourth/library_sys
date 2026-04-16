@@ -11,9 +11,7 @@
 #include <iostream>
 #include <algorithm>
 
-// ────────────────────────────────────────────────────────────────────────────
 // Internal helpers
-// ────────────────────────────────────────────────────────────────────────────
 
 namespace {
     /**
@@ -27,9 +25,7 @@ namespace {
 
 } // anonymous namespace
 
-// ────────────────────────────────────────────────────────────────────────────
 // File parsing
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Parses the resource data file into Book, Journal, and Conference objects.
@@ -62,7 +58,7 @@ namespace {
  *
  * An explicit index (i) is used so multi-line entries can be consumed
  * by advancing i, and so the conference parser can peek at lines[i+1]
- * without any seekg calls.  seekg after getline on a buffered ifstream
+ * without any seekg calls. seekg after getline on a buffered ifstream
  * is unreliable and was the source of an earlier parsing bug.
  *
  * @param filename  Path to the resource data file.
@@ -92,19 +88,17 @@ void ResourceList::loadFromFile(const std::string& filename) {
     for (size_t i = 0; i < lines.size(); ++i) {
         const std::string& line = lines[i];
 
-        // ---- section separator ----
+        // section separator
         if (line.find("#####") != std::string::npos) {
             section++;
             continue;
         }
 
-        // ---- skip comments and blank lines ----
+        // skip comments and blank lines
         if (line.empty() || line[0] == '#') continue;
 
-        // ─────────────────────────────────────────
         // SECTION 1 – BOOKS
         // Three consecutive lines: author / title / year
-        // ─────────────────────────────────────────
         if (section == 1) {
             if (i + 2 >= lines.size()) break; // malformed file guard
 
@@ -117,10 +111,8 @@ void ResourceList::loadFromFile(const std::string& filename) {
             resources.push_back(new Book(id, false, title, author));
         }
 
-        // ─────────────────────────────────────────
         // SECTION 2 – JOURNALS
         // Three consecutive lines: title / volume line 1 / volume line 2
-        // ─────────────────────────────────────────
         else if (section == 2) {
 
             if (i + 2 >= lines.size()) break; // malformed file guard
@@ -132,10 +124,8 @@ void ResourceList::loadFromFile(const std::string& filename) {
             resources.push_back(new Journal(id, false, title));
         }
 
-        // ─────────────────────────────────────────
         // SECTION 3 – CONFERENCES
         // Variable-length: title line (contains spaces) + N acronym lines (no spaces)
-        // ─────────────────────────────────────────
         else if (section == 3) {
             const std::string& title = line;
 
@@ -171,9 +161,7 @@ void ResourceList::loadFromFile(const std::string& filename) {
     std::cout << "  Loaded " << resources.size() << " resources.\n";
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Accessors
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @return A copy of the internal resource pointer vector.
@@ -198,9 +186,7 @@ Resource* ResourceList::findByID(const std::string& id) const {
     return nullptr;
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Search
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Case-insensitive keyword search across title, author, and acronym.
@@ -243,9 +229,7 @@ std::vector<Resource*> ResourceList::searchByKeyword(const std::string& keyword)
     return results;
 }
 
-// ────────────────────────────────────────────────────────────────────────────
 // Destructor
-// ────────────────────────────────────────────────────────────────────────────
 
 /**
  * @brief Deletes all heap-allocated Resource objects.

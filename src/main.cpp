@@ -46,21 +46,21 @@ int main() {
             break;
         }
 
-        // ---- 1. Borrow ----
+        // Borrow
         if (choice == 1) {
             int userID = Display::promptInt("user ID");
             std::string resID = Display::promptStr("resource ID");
             system.borrowResource(userID, resID);
         }
 
-        // ---- 2. Return ----
+        // Return
         else if (choice == 2) {
             int userID = Display::promptInt("user ID");
             std::string resID = Display::promptStr("resource ID");
             system.returnResource(userID, resID);
         }
 
-        // ---- 3. List available (with sort) ----
+        // List available (with sort)
         else if (choice == 3) {
             char order = 'a', field = 't';
             Display::sortMenu(order, field);
@@ -71,7 +71,7 @@ int main() {
             );
         }
 
-        // ---- 4. Loan report (with sort) ----
+        // Loan report (with sort)
         else if (choice == 4) {
             char order = 'a', field = 't';
             Display::sortMenu(order, field);
@@ -82,19 +82,19 @@ int main() {
             );
         }
 
-        // ---- 5. User report (optional file save) ----
+        // User report (optional file save)
         else if (choice == 5) {
             bool save = Display::saveReportPrompt();
             system.reportUsersWithLoans(save);
         }
 
-        // ---- 6. Search ----
+        // Search
         else if (choice == 6) {
             std::string keyword = Display::promptStr("search keyword");
             system.searchResources(keyword);
         }
 
-        // ---- 7. Activity log ----
+        // Activity log
         else if (choice == 7) {
             system.displayActivityLog();
         }
